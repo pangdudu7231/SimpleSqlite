@@ -86,27 +86,6 @@ namespace SimpleSqlite
     }
 
     /// <summary>
-    ///     数据表字段最大长度的属性
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property)]
-    public sealed class MaxLengthAttribute : Attribute
-    {
-        private const int DEFAULT_MAX_STRING_LENGTH = 140; // 默认的最大长度
-
-        public int Value { get; }
-
-        public MaxLengthAttribute()
-        {
-            Value = DEFAULT_MAX_STRING_LENGTH;
-        }
-
-        public MaxLengthAttribute(int value)
-        {
-            Value = value;
-        }
-    }
-
-    /// <summary>
     ///     数据表字段的排序规则的属性
     ///     sqlite中的三种排序规则 BINARY、NOCASE 、RTRIM
     /// </summary>
