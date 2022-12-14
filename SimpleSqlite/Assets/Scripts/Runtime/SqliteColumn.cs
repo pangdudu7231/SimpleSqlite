@@ -96,11 +96,16 @@ namespace SimpleSqlite
 
         public override void SetValueToDbTable(IDbTable dbTable, object val)
         {
-            _propertyInfo.SetValue(dbTable, Convert.ChangeType(val, ColumnType));
+            if (ColumnType == typeof(bool)) //0:false, 1:true
+                _propertyInfo.SetValue(dbTable, (long) val == 1);
+            else
+                _propertyInfo.SetValue(dbTable, Convert.ChangeType(val, ColumnType));
         }
 
         public override object GetValueFromDbTable(IDbTable dbTable)
         {
+            if (ColumnType == typeof(bool)) //0:false, 1:true
+                return (bool) _propertyInfo.GetValue(dbTable) ? 1 : 0;
             return _propertyInfo.GetValue(dbTable);
         }
 
